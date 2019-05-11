@@ -1,5 +1,71 @@
 [
   {
+    "id": "local_protection",
+    "type": "dropdown",
+    "label": {
+      "en": "Local protection",
+      "nl": "Lokale beveiling"
+    },
+    "value": "0",
+    "hint": {
+      "en": "This parameter ({{zwaveParameterIndex}}) is used to prevent unintended motor movement.",
+      "nl": "Deze parameter ({{zwaveParameterIndex}}) wordt gebruikt om onbedoelde motorbeweging te voorkomen."
+    },
+    "zwave": {
+      "index": 1,
+      "size": 1
+    },
+    "values": [
+      {
+        "id": "0",
+        "label": {
+          "en": "No protection.",
+          "nl": "Geen beveiliging."
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "en": "Local protection active.",
+          "nl": "Lokale beveiliging actief."
+        }
+      }
+    ]
+  },
+  {
+    "id": "local_protection",
+    "type": "dropdown",
+    "label": {
+      "en": "RF Protection (z-wave)",
+      "nl": "RF beveiliging (z-wave)"
+    },
+    "value": "0",
+    "hint": {
+      "en": "This parameter ({{zwaveParameterIndex}}) is used to prevent unintended motor movement from RF.",
+      "nl": "Deze parameter ({{zwaveParameterIndex}}) wordt gebruikt om onbedoelde motorbeweging te voorkomen via z-wave."
+    },
+    "zwave": {
+      "index": 2,
+      "size": 1
+    },
+    "values": [
+      {
+        "id": "0",
+        "label": {
+          "en": "No protection.",
+          "nl": "Geen beveiliging."
+        }
+      },
+      {
+        "id": "1",
+        "label": {
+          "en": "RF Protection active.",
+          "nl": "RF protectie is actief."
+        }
+      }
+    ]
+  },
+  {
     "id": "reports_type",
     "type": "dropdown",
     "label": {
@@ -26,6 +92,68 @@
         "id": "1",
         "label": {
           "en": "Fibar Command Class"
+        }
+      }
+    ]
+  },
+  {
+    "id": "timeTurnOfSlats",
+    "type": "number",
+    "label": {
+      "en": "Time of full turn of the slats",
+      "nl": "Tijd van volledige draaiing van de lamellen"
+    },
+    "hint": {
+      "en": "In Venetian Blind mode the parameter ({{zwaveParameterIndex}}) determines time of full turn of the slats (150 = 1,5 seconds)",
+      "nl": "In Jaloezie modus de parameter ({{zwaveParameterIndex}}) bepaalt de tijd van volledige draaiing van de lamellen (150 = 1,5 seconden)"
+    },
+    "zwave": {
+      "index": 12,
+      "size": 2,
+      "signed": false
+    },
+    "value": 150,
+    "attr": {
+      "min": 0,
+      "max": 65535
+    }
+  },
+  {
+    "id": "slatsToPreviousPosition",
+    "type": "dropdown",
+    "label": {
+      "en": "Set slats back to previous position",
+      "nl": "Zet lamellen terug naar de vorige positie"
+    },
+    "hint": {
+      "en": "In Venetian Blind mode the parameter ({{zwaveParameterIndex}}) determines time of full turn of the slats",
+      "nl": "In Jaloezie modus de parameter ({{zwaveParameterIndex}}) bepaalt de tijd van volledige draaiing van de lamellen"
+    },
+    "zwave": {
+      "index": 13,
+      "size": 1
+    },
+    "value": "1",
+    "values": [
+      {
+        "id": "0",
+        "label": {
+          "en": "In case of the main controller operation",
+          "nl": "Alleen dmv de controller"
+        }
+      },
+      {
+        "id": "1",
+        "label": {
+          "en": "In case of the main controller operation, momentary switch operation, or when the limit switch is reached.",
+          "nl": "Dmv de controller, handmatige handeling, of wanneer het einde is bereikt."
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "en": "In case of the main controller operation, momentary switch operation, when the limit switch is reached or after receiving a STOP control frame (Switch Multilevel Stop)",
+          "nl": "Dmv de controller, handmatige handeling, wanneer het einde is bereikt, of na het ontvangen van een STOP control frame."
         }
       }
     ]
@@ -71,6 +199,72 @@
     ]
   },
   {
+    "id": "relaysTurnedOff",
+    "type": "number",
+    "label": {
+      "en": "Turn off relays after reaching a limit switch",
+      "nl": "Relays uitschakelen bij het bereiken van het limiet"
+    },
+    "hint": {
+      "en": "This parameter ({{zwaveParameterIndex}}) determines when the Roller Shutter relays are turned off after reaching a limit switch (value 10 = 1 second).",
+      "nl": "Deze parameter ({{zwaveParameterIndex}}) bepaalt wanneer de relays uitschakeld worden na het bereiken van het eindpunt (waarde 10 = 1 seconde)."
+    },
+    "zwave": {
+      "index": 17,
+      "size": 1,
+      "signed": false
+    },
+    "value": 10,
+    "attr": {
+      "min": 0,
+      "max": 255
+    }
+  },
+  {
+    "id": "motorOperationDetection",
+    "type": "number",
+    "label": {
+      "en": "Motor operation detection",
+      "nl": "Motor in werking detectie"
+    },
+    "hint": {
+      "en": "This parameter ({{zwaveParameterIndex}}) is the power threshold to be interpreted as reaching a limit switch",
+      "nl": "Deze parameter ({{zwaveParameterIndex}}) is de vermogensdrempel die moet worden geïnterpreteerd als het bereiken van het eindpunt"
+    },
+    "zwave": {
+      "index": 18,
+      "size": 1,
+      "signed": false
+    },
+    "value": 10,
+    "attr": {
+      "min": 0,
+      "max": 255
+    }
+  },
+  {
+    "id": "motorOperationTime",
+    "type": "number",
+    "label": {
+      "en": "Motor operation time",
+      "nl": "Motor werkingstijd"
+    },
+    "hint": {
+      "en": "This parameter ({{zwaveParameterIndex}}) is the time period in seconds for the motor to continue operation.",
+      "nl": "Deze parameter ({{zwaveParameterIndex}}) is de tijdsperiode in secondes waarin de motor blijft werken"
+    },
+    "zwave": {
+      "index": 22,
+      "size": 2,
+      "signed": false
+    },
+    "value": 240,
+    "attr": {
+      "min": 0,
+      "max": 65535
+    }
+  },
+  {
     "$extends": "reportThreshold",
     "$id": "power_level_change",
     "value": 10,
@@ -114,15 +308,15 @@
     "value": false
   },
   {
-    "id": "invertWindowCoveringsDirection",
+    "id": "invert_direction",
     "type": "checkbox",
     "label": {
       "en": "Invert movement",
       "nl": "Keer de beweging om"
     },
     "hint": {
-      "en": "This parameter inverts the shutter movement direction.",
-      "nl": "Deze parameter keert de rolluik bewegingsdirectie om."
+      "en": "This parameter ({{zwaveParameterIndex}}) inverts the shutter movement direction.",
+      "nl": "Deze parameter ({{zwaveParameterIndex}}) keert de rolluik bewegingsdirectie om."
     },
     "value": false
   }
